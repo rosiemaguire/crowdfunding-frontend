@@ -1,0 +1,16 @@
+.project-card {
+  width: 100%;
+  border: 1px;
+  box-shadow: 0px 0px 5px gray;
+  background-color: var(--pink);
+}
+
+.project-card img {
+  width: 100%;
+  height: 300px; 
+  object-fit: cover;
+}
+
+.project-card h3 {
+  text-align: center;
+}

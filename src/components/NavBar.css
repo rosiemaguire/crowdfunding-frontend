@@ -1,0 +1,20 @@
+@import "../main.css";
+
+.nav-bar nav {
+  background-color: var(--pastel-moss);
+  padding: 16px;
+}
+
+.nav-bar ul {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-bar li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--font-blue);
+}
