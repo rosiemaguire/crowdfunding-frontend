@@ -3,13 +3,16 @@ import "./NavBar.css"
 
 function NavBar() {
   return (
-    <div className="nav-bar">
-      <nav>
+    <div>
+      <header>
+        <img src="public\logo.png" alt="Advocat Logo" />
+      <nav className="nav-bar">
         <ul>
           <li><Link to="/">Home</Link></li>
-          <li><Link to="/project">Project</Link></li>
+          <li><Link to="/login">Login</Link></li>
         </ul>
       </nav>
+      </header>
       <Outlet />
     </div>
   );

@@ -1,15 +1,28 @@
 @import "../main.css";
 
-.nav-bar nav {
+header {
   background-color: var(--pastel-moss);
-  padding: 16px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  display: flex;
+}
+
+header img {
+  max-width: 62px;
+  max-height: 61px;
 }
 
 .nav-bar ul {
-  display: flex;
   gap: 24px;
+  margin-right: 16px;
 }
 
+@media (min-width: 768px) {
+  .nav-bar ul {
+    display: flex;
+  }
+}
 .nav-bar li {
   list-style: none;
 }
