@@ -11,9 +11,9 @@ function ProjectPage() {
       <ul>
         {oneProject.pledges.map((pledgeData, key) => {
           return (
-            <l1 key={key}>
+            <li key={key}>
               {pledgeData.amount} from {pledgeData.supporter}
-            </l1>
+            </li>
           );
         })}
       </ul>
