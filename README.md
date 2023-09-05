@@ -31,13 +31,13 @@
 <br />
 <div align="center">
   <a href="https://github.com/rosiemaguire/crowdfunding-frontend">
-    <img src="public/logo.png" alt="Logo" width="80" height="80">
+    <img src="public/logo.png" alt="Logo" width="413" height="413">
   </a>
 
 <h3 align="center">Advocat</h3>
 
   <p align="center">
-    She Codes Project: A platform for people to fund projects that they believe in
+    She Codes crowdfunding project - React front end.
     <br />
     <a href="https://github.com/rosiemaguire/crowdfunding-frontend"><strong>Explore the docs »</strong></a>
     <br />
@@ -84,9 +84,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com)
+<!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-Here's a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `rosiemaguire`, `crowdfunding-frontend`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description` -->
+This project is the front end of a crowdfunding website which has been created to support people with raising funds for their furry children's medical expenses. You can find the back end repository [here][back-end-repo].
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -254,3 +254,4 @@ Project Link: [https://github.com/rosiemaguire/crowdfunding-frontend](https://gi
 [Bootstrap-url]: https://getbootstrap.com
 [JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
 [JQuery-url]: https://jquery.com 
+[back-end-repo]:https://github.com/rosiemaguire/Django-crowd-funding-project
