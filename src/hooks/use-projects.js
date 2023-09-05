@@ -6,7 +6,7 @@ export default function useProjects() {
   // Here we use the useState hook to create a state variable called projects
   // and a function to update it called setProjects. We initialize the state
   // variable with an empty array
-  const [projects, setProjects] =useState([]);
+  const [projects, setProjects] = useState([]);
 
   // We also create a state variable called isLoading and error to keep track of
   // the loading state and any errors that might occur 
