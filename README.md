@@ -158,15 +158,19 @@ _For more examples, please refer to the [Documentation](https://example.com)_ --
 - [ ] A screenshot of a project with pledges
 - [ ] A screenshot of the resulting page when an unauthorized user attempts to edit a project (optional, depending on whether or not this functionality makes sense inyour app!)
 
-<!-- <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ROADMAP -->
-<!-- ## Roadmap
-
+## Roadmap
+<!--
 - [ ] Feature 1
 - [ ] Feature 2
 - [ ] Feature 3
     - [ ] Nested Feature -->
+- Have function that calculates total donations
+- Have function that grabs most recent x number of pledges
+    - option to view all? for anyone or just project owners?
+- Have donation bar that shows percentage filled as percentage of goal reached from total pledges
 
 See the [open issues](https://github.com/rosiemaguire/crowdfunding-frontend/issues) for a full list of proposed features (and known issues).
 
