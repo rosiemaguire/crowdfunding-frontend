@@ -19,16 +19,15 @@ function ProjectPage() {
 
   return (
     <div className="project-page">
-      
-      <img src={project.image} />
+      <img className="project-image centre-block-object" src={project.image} />
       {/* <h3>Created at: {project.date_created}</h3> */}
-
+      <a href="#" className="button centre-block-object">BE AN ADVOCAT</a>
       <article className="project-blurb">
       <h2>{project.title}</h2>
-        <h3>Status:</h3> <p>{`${project.is_open ? "Closed" : "Open"}`}</p>
-        {project.description}
+        <h5>Status: {`${project.is_open ? "Open" : "Closed"}`}</h5>
+        <p>{project.description}</p>
       </article>
-      <section className="recent-pledges">
+      <article className="recent-pledges">
         <h3>Advocats</h3>
         <ul>
           {project.pledges.map((pledgeData, key) => {
@@ -39,7 +38,7 @@ function ProjectPage() {
             );
           })}
         </ul>
-      </section>
+      </article>
     </div>
   );
 }

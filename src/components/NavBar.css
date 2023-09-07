@@ -1,8 +1,14 @@
 @import "../main.css";
 
+a {
+  text-decoration: none;
+  color: var(--font-blue);
+}
+
 header {
   background-color: var(--pastel-moss);
   align-items: center;
+  text-align: center;
   justify-content: space-between;
   padding: 8px;
   display: flex;
@@ -13,21 +19,38 @@ header img {
   max-height: 61px;
 }
 
-.nav-bar ul {
-  gap: 24px;
-  margin-right: 16px;
+.hidden {
+  display: none;
 }
+
+.mobile-menu-icon {
+  background-color: var(--pastel-moss);
+  border: none;
+}
+
+.nav-bar ul {
+  margin-right: 4px;
+}
+
 
 @media (min-width: 768px) {
+  .mobile-menu-icon {
+    display: none;
+  }
+  .nav-bar {
+    text-align:center;
+    flex-grow:1;
+  }
+
   .nav-bar ul {
     display: flex;
+    justify-content: center; 
+    margin-right: 0;
+    gap: 40px;
+    text-align:center; 
   }
 }
+
 .nav-bar li {
   list-style: none;
-}
-
-a {
-  text-decoration: none;
-  color: var(--font-blue);
 }
