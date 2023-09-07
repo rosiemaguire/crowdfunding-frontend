@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaTimes } from "react-icons/fa";
 import "./NavBar.css";
 
 function NavBar() {
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(true);
   return (
     <div>
       <header>
@@ -16,16 +16,16 @@ function NavBar() {
             onClick={() => setIsMobile(!isMobile)}>
             {isMobile ? (
               <i>
-                <FaTimes />{" "}
+                <GiHamburgerMenu />
               </i>
             ) : (
               <i>
-                <GiHamburgerMenu />
+                <FaTimes />{/* {" "} */}
               </i>
             )}
           </button>
           <ul
-            className={isMobile ? "" : "hidden"}
+            className={isMobile ? "hidden" : ""}
             onClick={() => setIsMobile(false)}>
             <li>
               <Link to="/">Home</Link>

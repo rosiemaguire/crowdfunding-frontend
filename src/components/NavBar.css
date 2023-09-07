@@ -8,7 +8,7 @@ a {
 header {
   background-color: var(--pastel-moss);
   align-items: center;
-  text-align: center;
+  text-align: right;
   justify-content: space-between;
   padding: 8px;
   display: flex;
@@ -17,6 +17,7 @@ header {
 header img {
   max-width: 62px;
   max-height: 61px;
+  align-self: flex-start;
 }
 
 .hidden {
