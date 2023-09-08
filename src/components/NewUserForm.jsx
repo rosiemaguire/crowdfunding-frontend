@@ -1,11 +1,13 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate,json } from "react-router-dom";
 import { useState } from "react";
 import postNewUser from "../api/post-user";
 import postLogin from "../api/post-login";
+// import { json } from "react-router-dom";
 
 function NewUserForm() {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
+  const [formIsInvalid, setFormIsInvalid] = useState("");
   const [userDetails, setUserDetails] = useState({
     username: "",
     password: "",
@@ -24,6 +26,8 @@ function NewUserForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    setFormIsInvalid("");
+    setErrorMessage("");
     if (userDetails.username && userDetails.password) {
       postNewUser(
         userDetails.username,
@@ -41,10 +45,11 @@ function NewUserForm() {
           );
         })
         .catch((error) => {
-          alert(error);
+          console.log(`Error: ${[error.message]}`)
+          setErrorMessage(`Error: ${[error.message]}`)
         });
     } else {
-      setErrorMessage("Please complete required fields.");
+      setFormIsInvalid("Please complete required fields.");
     }
   };
 
@@ -83,8 +88,8 @@ function NewUserForm() {
       <div>
         <label
           htmlFor="username"
-          className={errorMessage ? "error-message" : ""}>
-          Username<span className={errorMessage ? "" : "hidden"}>*</span>:
+          className={formIsInvalid ? "error-message" : ""}>
+          Username<span className={formIsInvalid ? "" : "hidden"}>*</span>:
         </label>
         <input
           type="text"
@@ -97,8 +102,8 @@ function NewUserForm() {
       <div>
         <label
           htmlFor="password"
-          className={errorMessage ? "error-message" : ""}>
-          Password<span className={errorMessage ? "" : "hidden"}>*</span>:
+          className={formIsInvalid ? "error-message" : ""}>
+          Password<span className={formIsInvalid ? "" : "hidden"}>*</span>:
         </label>
         <input
           type="password"
@@ -112,6 +117,7 @@ function NewUserForm() {
         Create account
       </button>
       <p className="error-message">{errorMessage}</p>
+      <p className="error-message">{formIsInvalid}</p>
     </form>
   );
 }
