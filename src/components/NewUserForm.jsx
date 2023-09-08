@@ -1,8 +1,8 @@
-import { useNavigate,json } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import postNewUser from "../api/post-user";
 import postLogin from "../api/post-login";
-// import { json } from "react-router-dom";
+
 
 function NewUserForm() {
   const navigate = useNavigate();
