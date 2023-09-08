@@ -39,6 +39,9 @@ function NavBar() {
             <li>
               <Link to="/login">Log In</Link>
             </li>
+            <li>
+              <Link to="/create-account">Create Account</Link>
+            </li>
           </ul>
         </nav>
       </header>

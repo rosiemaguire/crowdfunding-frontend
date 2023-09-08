@@ -171,6 +171,8 @@ _For more examples, please refer to the [Documentation](https://example.com)_ --
 - Have function that grabs most recent x number of pledges
     - option to view all? for anyone or just project owners?
 - Have donation bar that shows percentage filled as percentage of goal reached from total pledges
+- Check if username is already in use on the handle change, prior to post request being made for new user creation
+- return human readable errors on screen rather than in console log
 
 See the [open issues](https://github.com/rosiemaguire/crowdfunding-frontend/issues) for a full list of proposed features (and known issues).
 

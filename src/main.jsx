@@ -12,6 +12,7 @@ import ProjectPage from "./pages/ProjectPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import AboutPage from "./pages/AboutPage.jsx";
 import ContactPage from "./pages/ContactPage.jsx";
+import NewUserPage from "./pages/NewUserPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,8 @@ const router = createBrowserRouter([
       { path: "/project/:id", element: <ProjectPage /> },
       { path: "/login", element: <LoginPage/> },
       { path: "/about", element: <AboutPage/> },
-      { path: "/contact", element: <ContactPage />}
+      { path: "/contact", element: <ContactPage />},
+      { path: "/create-account", element: <NewUserPage />}
     ],
   },
 ]);
