@@ -5,6 +5,7 @@ import postLogin from "../api/post-login";
 
 function NewUserForm() {
   const navigate = useNavigate();
+  const [errorMessage, setErrorMessage] = useState("");
   const [userDetails, setUserDetails] = useState({
     username: "",
     password: "",
@@ -42,11 +43,13 @@ function NewUserForm() {
         .catch((error) => {
           alert(error);
         });
+    } else {
+      setErrorMessage("Please complete required fields.");
     }
   };
 
   return (
-    <form>
+    <form id="create-user-form">
       <div>
         <label htmlFor="first_name">First Name:</label>
         <input
@@ -78,7 +81,11 @@ function NewUserForm() {
         />
       </div>
       <div>
-        <label htmlFor="username">Username:</label>
+        <label
+          htmlFor="username"
+          className={errorMessage ? "error-message" : ""}>
+          Username<span className={errorMessage ? "" : "hidden"}>*</span>:
+        </label>
         <input
           type="text"
           id="username"
@@ -88,7 +95,11 @@ function NewUserForm() {
         />
       </div>
       <div>
-        <label htmlFor="password">Password:</label>
+        <label
+          htmlFor="password"
+          className={errorMessage ? "error-message" : ""}>
+          Password<span className={errorMessage ? "" : "hidden"}>*</span>:
+        </label>
         <input
           type="password"
           name="password"
@@ -100,6 +111,7 @@ function NewUserForm() {
       <button type="submit" onClick={handleSubmit}>
         Create account
       </button>
+      <p className="error-message">{errorMessage}</p>
     </form>
   );
 }
