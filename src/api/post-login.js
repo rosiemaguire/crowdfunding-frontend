@@ -12,13 +12,13 @@ async function postLogin(username,password) {
   });
 
   if (!response.ok) {
-    const fallbackError = `Error trying to login`;
+    const fallbackError = `Error trying to login.`;
 
     const data = await response.json().catch(() => {
       throw new Error(fallbackError);
     });
 
-    const errorMessage = data?.detail ?? fallbackError;
+    const errorMessage = (data?.detail ?? data?.non_field_errors) ?? fallbackError;
     throw new Error(errorMessage);
   }
 
