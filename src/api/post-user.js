@@ -31,18 +31,6 @@ async function postUser(first_name,last_name,email,username,password) {
 
     if (errorMessages) {
       if (
-        errorMessages.usernameError &&
-        errorMessages.usernameError.some((error) => error.includes("valid number"))
-      ) {
-        errorMessages.usernameError = "Goal must be a number.";
-      }
-      if (
-        errorMessages.emailError &&
-        errorMessages.emailError.some((error) => error.includes("URL"))
-      ) {
-        errorMessages.emailError = "Provide a valid link to image.";
-      }
-      if (
         errorMessages.detailError &&
         errorMessages.detailError.includes("Authentication credentials")
       ) {
