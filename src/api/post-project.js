@@ -62,8 +62,7 @@ async function postProject(title, description, goal, image) {
       const errorMessage = Object.values(errorMessages);
       throw new Error(errorMessage);
     } else {
-      const errorMessage =
-        data?.detail ?? data?.goal ?? data?.image ?? fallbackError;
+      const errorMessage = fallbackError;
       throw new Error(errorMessage);
     }
   }

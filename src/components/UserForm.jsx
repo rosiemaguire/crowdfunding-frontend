@@ -9,11 +9,11 @@ function NewUserForm() {
   const [errorMessage, setErrorMessage] = useState("");
   const [formIsInvalid, setFormIsInvalid] = useState("");
   const [userDetails, setUserDetails] = useState({
-    username: "",
-    password: "",
     first_name: "",
     last_name: "",
     email: "",
+    username: "",
+    password: "",
   });
 
   const handleChange = (event) => {
@@ -30,11 +30,11 @@ function NewUserForm() {
     setErrorMessage("");
     if (userDetails.username && userDetails.password) {
       postNewUser(
+        userDetails.first_name,
+        userDetails.last_name,
+        userDetails.email,
         userDetails.username,
         userDetails.password,
-        userDetails.email,
-        userDetails.first_name,
-        userDetails.last_name
       )
         .then(() => {
           postLogin(userDetails.username, userDetails.password).then(
@@ -45,8 +45,7 @@ function NewUserForm() {
           );
         })
         .catch((error) => {
-          console.log(`Error: ${[error.message]}`)
-          setErrorMessage(`Error: ${[error.message]}`)
+          setErrorMessage(error.message.split(","));
         });
     } else {
       setFormIsInvalid("Please complete required fields.");
@@ -116,7 +115,11 @@ function NewUserForm() {
       <button type="submit" onClick={handleSubmit}>
         Create account
       </button>
-      <p className="error-message">{errorMessage}</p>
+      <div className="error-message">
+        {Object.values(errorMessage).map((error, key) => (
+          <p key={key}>Error: {error}</p>
+        ))}
+      </div>
       <p className="error-message">{formIsInvalid}</p>
     </form>
   );

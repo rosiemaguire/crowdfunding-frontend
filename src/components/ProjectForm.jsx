@@ -37,7 +37,6 @@ function ProjectForm() {
         projectDetails.image
       )
         .then((response) => {
-          console.log(response);
           navigate(`/project/${response.id}/`);
         })
         .catch((error) => {
@@ -49,7 +48,6 @@ function ProjectForm() {
   };
 
   return (
-    // console.log(typeof(Object.values(errorMessage))),
     <form id="create-project-form">
       <div>
         <label htmlFor="title" className={formIsInvalid ? "error-message" : ""}>
