@@ -1,4 +1,4 @@
-import NewUserForm from "../components/NewUserForm";
+import NewUserForm from "../components/UserForm";
 
 function NewUserPage() {
   return (<NewUserForm />);

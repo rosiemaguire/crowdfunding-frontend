@@ -18,7 +18,7 @@ async function postLogin(username,password) {
       throw new Error(fallbackError);
     });
 
-    const errorMessage = (data?.detail ?? data?.non_field_errors) ?? fallbackError;
+    const errorMessage = data?.detail ?? data?.non_field_errors ?? fallbackError;
     throw new Error(errorMessage);
   }
 

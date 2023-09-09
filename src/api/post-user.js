@@ -1,5 +1,5 @@
 
-async function postNewUser(username,password,first_name,last_name,email) {
+async function postUser(username,password,first_name,last_name,email) {
   const url = `${import.meta.env.VITE_API_URL}/users/`;
 
   const response =  await fetch(url, {
@@ -23,7 +23,7 @@ async function postNewUser(username,password,first_name,last_name,email) {
       throw new Error(fallbackError);
     });
     
-    const errorMessage = (data?.detail ?? data?.username) ?? fallbackError;
+    const errorMessage = data?.detail ?? data?.username ?? fallbackError;
     throw new Error(errorMessage);
     
   }
@@ -31,4 +31,4 @@ async function postNewUser(username,password,first_name,last_name,email) {
   return await response.json();
 }
 
-export default postNewUser;
+export default postUser;

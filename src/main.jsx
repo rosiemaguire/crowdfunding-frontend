@@ -13,6 +13,7 @@ import LoginPage from "./pages/LoginPage.jsx";
 import AboutPage from "./pages/AboutPage.jsx";
 import ContactPage from "./pages/ContactPage.jsx";
 import NewUserPage from "./pages/NewUserPage.jsx";
+import NewProjectPage from "./pages/NewProjectPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +25,8 @@ const router = createBrowserRouter([
       { path: "/login", element: <LoginPage/> },
       { path: "/about", element: <AboutPage/> },
       { path: "/contact", element: <ContactPage />},
-      { path: "/create-account", element: <NewUserPage />}
+      { path: "/create-account", element: <NewUserPage />},
+      { path: "/new-project", element: <NewProjectPage />}
     ],
   },
 ]);

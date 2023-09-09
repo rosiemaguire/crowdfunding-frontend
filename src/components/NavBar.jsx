@@ -20,7 +20,7 @@ function NavBar() {
               </i>
             ) : (
               <i>
-                <FaTimes />{/* {" "} */}
+                <FaTimes />
               </i>
             )}
           </button>
