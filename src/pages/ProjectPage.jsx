@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useProject from "../hooks/use-project";
 import "./ProjectPage.css";
 
@@ -21,7 +21,7 @@ function ProjectPage() {
     <div className="project-page">
       <img className="project-image centre-block-object" src={project.image} />
       {/* <h3>Created at: {project.date_created}</h3> */}
-      <a href="#" className="button centre-block-object">BE AN ADVOCAT</a>
+      <Link to="/pledges" className="button centre-block-object">BE AN ADVOCAT</Link>
       <article className="project-blurb">
       <h2>{project.title}</h2>
         <h5>Status: {`${project.is_open ? "Open" : "Closed"}`}</h5>

@@ -112,7 +112,7 @@ function NewUserForm() {
           onChange={handleChange}
         />
       </div>
-      <button type="submit" onClick={handleSubmit}>
+      <button type="submit" className="button" onClick={handleSubmit}>
         Create account
       </button>
       <div className="error-message">
