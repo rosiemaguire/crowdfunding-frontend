@@ -2,9 +2,15 @@ import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaTimes } from "react-icons/fa";
+import useAuth from "../hooks/use-auth.js";
 import "./NavBar.css";
 
 function NavBar() {
+  const { auth, setAuth } = useAuth();
+  const handleLogout = () => {
+    window.localStorage.removeItem("token");
+    setAuth({ token: null });
+  };
   const [isMobile, setIsMobile] = useState(true);
   return (
     <div>
@@ -36,12 +42,23 @@ function NavBar() {
             <li>
               <Link to="/contact">Contact</Link>
             </li>
-            <li>
-              <Link to="/login">Log In</Link>
-            </li>
-            <li>
-              <Link to="/create-account">Create Account</Link>
-            </li>
+
+            {auth.token ? (
+              <li>
+                <Link to="/" onClick={handleLogout}>
+                  Log Out
+                </Link>
+              </li>
+            ) : (
+              <>
+                <li>
+                  <Link to="/login">Log In</Link>
+                </li>
+                <li>
+                  <Link to="/create-account">Create Account</Link>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
       </header>
