@@ -1,9 +1,11 @@
 import { Link, useParams } from "react-router-dom";
 import useProject from "../hooks/use-project";
+import useAuth from "../hooks/use-auth";
 import "./ProjectPage.css";
 import "../main.css";
 
 function ProjectPage() {
+  const { auth } = useAuth();
   // Here we use a hook that comes for free in react router called `useParams`
   // to get the id from the URL so that we can pass it to our useProject hook
   const { id } = useParams();
@@ -27,7 +29,7 @@ function ProjectPage() {
         <Link
           to={{ pathname: "/pledges/", search: `project=${id}` }}
           className={`button centre-block-object ${
-            project.is_open ? "" : "hidden"
+            auth.token && project.is_open ? "" : "hidden"
           }`}>
           BE AN ADVOCAT
         </Link>

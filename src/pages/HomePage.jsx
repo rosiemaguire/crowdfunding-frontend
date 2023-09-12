@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import useProjects from "../hooks/use-projects";
 import ProjectCard from "../components/ProjectCard";
+import useAuth from "../hooks/use-auth";
 import "./HomePage.css";
 
 function HomePage() {
   const { projects, isLoading, error } = useProjects();
+  const { auth } = useAuth();
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -17,12 +19,24 @@ function HomePage() {
   return (
     <article>
       <section id="project-list">
-        {projects.map((projectData, key) => {
-          return <ProjectCard key={key} projectData={projectData} />;
-        })}
+        {projects
+          .filter((project) => project["is_open"] == true)
+          .sort((a, b) => (b.id > a.id ? 1 : -1))
+          .slice(0, 3)
+          .map((projectData, key) => {
+            return <ProjectCard key={key} projectData={projectData} />;
+          })}
       </section>
-      <Link to="/new-project" className="button centrr-block-object">Start Fundraising</Link>
-      <Link to="/projects" className="button centrr-block-object">Projects to Advocat</Link>
+      {auth.token ? (
+        <Link to="/new-project" className="button centre-inline-block-object">
+          Start Fundraising
+        </Link>
+      ) : (
+        ""
+      )}
+      <Link to="/projects" className="button centre-inline-block-object">
+        More Projects to Advocat
+      </Link>
     </article>
   );
 }

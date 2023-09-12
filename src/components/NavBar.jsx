@@ -42,7 +42,6 @@ function NavBar() {
             <li>
               <Link to="/contact">Contact</Link>
             </li>
-
             {auth.token ? (
               <li>
                 <Link to="/" onClick={handleLogout}>
