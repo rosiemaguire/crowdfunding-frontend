@@ -54,7 +54,7 @@ function PledgeForm() {
           setErrorMessage(error.message.split(","));
         });
     } else {
-      setFormIsInvalid("Please complete required fields.");
+      setFormIsInvalid("Please enter an amount to Advocat this project.");
     }
   };
 
