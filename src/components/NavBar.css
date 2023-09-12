@@ -20,9 +20,9 @@ header img {
   align-self: flex-start;
 }
 
-.hidden {
+/* .hidden {
   display: none;
-}
+} */
 
 .mobile-menu-icon {
   background-color: var(--pastel-moss);
