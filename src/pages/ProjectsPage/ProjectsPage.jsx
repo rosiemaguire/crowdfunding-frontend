@@ -1,7 +1,7 @@
 import useProjects from "../../hooks/use-projects";
 import useAuth from "../../hooks/use-auth";
 import { Link } from "react-router-dom";
-import ProjectCard from "../../components/ProjectCard";
+import ProjectCard from "../../components/ProjectCard/ProjectCard";
 import "./ProjectsPage.css"
 
 function ProjectsPage() {
