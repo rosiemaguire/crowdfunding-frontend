@@ -1,0 +1,15 @@
+#about {
+  margin: 16px;
+}
+
+#about li {
+  display: list-item;
+  list-style:disc;
+  list-style-position:inside;
+}
+
+#about a {
+  color: var(--pink);
+  font-weight: bold;
+  text-decoration:underline;
+}

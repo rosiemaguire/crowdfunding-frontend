@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
-import postPledge from "../api/post-pledge";
+import postPledge from "../../api/post-pledge";
+import "./PledgeForm.css"
 
 function PledgeForm() {
   const location = useLocation();
@@ -58,7 +59,7 @@ function PledgeForm() {
 
   return (
     <section>
-      <form className={isSubmitted ? "hidden" : ""} >
+      <form className= {isSubmitted ? "hidden" : "form"} >
         <div>
           <label htmlFor="amount">Amount:</label>
           <input
@@ -79,7 +80,7 @@ function PledgeForm() {
             onChange={handleChange}
           />
         </div>
-        <div>
+        <div className="checkbox">
           <label htmlFor="anonymous">Be an anonymous Advocat?</label>
           <input
             type="checkbox"
@@ -95,10 +96,10 @@ function PledgeForm() {
         {/*<sub className={errorMessage ? "" : "hidden"}>Please check your username and password.</sub> */}
         <p>{formIsInvalid}</p>
       </form>
-      <article className={isSubmitted ? "" : "hidden"}>
+      <article className={isSubmitted ? "desktop-inline-buttons" : "hidden"}>
               <h1>Thank you for your donation!</h1>
-              <Link to="/projects" className="button">View other projects</Link>
-              <Link to={`/project/${projectId}`} className="button">Return to previous project</Link>
+              <Link to="/projects" className="button centre-block-object">View other projects</Link>
+              <Link to={`/project/${projectId}`} className="button centre-block-object">Return to previous project</Link>
             </article>
     </section>
   );

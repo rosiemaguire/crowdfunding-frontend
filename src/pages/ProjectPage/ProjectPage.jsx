@@ -1,8 +1,8 @@
 import { Link, useParams } from "react-router-dom";
-import useProject from "../hooks/use-project";
-import useAuth from "../hooks/use-auth";
+import useProject from "../../hooks/use-project";
+import useAuth from "../../hooks/use-auth";
 import "./ProjectPage.css";
-import "../main.css";
+import "../../main.css";
 
 function ProjectPage() {
   const { auth } = useAuth();

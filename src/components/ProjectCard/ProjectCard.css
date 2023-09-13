@@ -3,6 +3,8 @@
   border: 1px;
   box-shadow: 0px 0px 5px gray;
   background-color: var(--pink);
+  margin-bottom: 10px;
+  padding-bottom: 24px;
 }
 
 .project-card img {

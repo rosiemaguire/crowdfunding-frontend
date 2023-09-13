@@ -11,4 +11,10 @@
     padding: 16px;
     margin: 0;
   }
+
+  .desktop-single-button {
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

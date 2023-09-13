@@ -1,0 +1,8 @@
+@media (min-width: 768px) {
+  #all-projects .desktop-inline-buttons {
+    max-width: 50%
+  }
+  #all-projects .button {
+    grid-column: 1/3;
+  }
+}

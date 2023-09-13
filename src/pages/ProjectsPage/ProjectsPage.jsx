@@ -1,7 +1,8 @@
-import useProjects from "../hooks/use-projects";
-import useAuth from "../hooks/use-auth";
+import useProjects from "../../hooks/use-projects";
+import useAuth from "../../hooks/use-auth";
 import { Link } from "react-router-dom";
-import ProjectCard from "../components/ProjectCard";
+import ProjectCard from "../../components/ProjectCard";
+import "./ProjectsPage.css"
 
 function ProjectsPage() {
   const { projects, isLoading, error } = useProjects();
@@ -16,14 +17,16 @@ function ProjectsPage() {
   }
 
   return (
-    <article>
+    <article id="all-projects">
+      <section className="desktop-inline-buttons">
       {auth.token ? (
-        <Link to="/new-project" className="button centre-inline-block-object">
+        <Link to="/new-project" className="button centre-block-object">
           Start Fundraising
         </Link>
       ) : (
         ""
       )}
+      </section>
       <section id="project-list">
         {projects.sort((a, b) => (b.id > a.id ? 1 : -1)).map((projectData, key) => {
           return <ProjectCard key={key} projectData={projectData} />;

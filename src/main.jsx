@@ -4,20 +4,20 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Import Components
-import NavBar from "./components/NavBar.jsx";
-import { AuthProvider } from "./components/AuthProvider.jsx";
+import NavBar from "./components/NavBar/NavBar.jsx";
+import { AuthProvider } from "./components/AuthProvider/AuthProvider.jsx";
 
 // Import Pages
-import HomePage from "./pages/HomePage.jsx";
-import ProjectPage from "./pages/ProjectPage.jsx";
-import ProjectsPage from "./pages/ProjectsPage.jsx";
-import LoginPage from "./pages/LoginPage.jsx";
-import AboutPage from "./pages/AboutPage.jsx";
-import ContactPage from "./pages/ContactPage.jsx";
-import NewUserPage from "./pages/NewUserPage.jsx";
-import NewProjectPage from "./pages/NewProjectPage.jsx";
-import NewPledgePage from "./pages/NewPledgePage.jsx";
-import UserPage from "./pages/UserProfilePage.jsx";
+import HomePage from "./pages/HomePage/HomePage.jsx";
+import ProjectPage from "./pages/ProjectPage/ProjectPage.jsx";
+import ProjectsPage from "./pages/ProjectsPage/ProjectsPage.jsx";
+import LoginPage from "./pages/LoginPage/LoginPage.jsx";
+import AboutPage from "./pages/AboutPage/AboutPage.jsx";
+import ContactPage from "./pages/ContactPage/ContactPage.jsx";
+import NewUserPage from "./pages/NewUserPage/NewUserPage.jsx";
+import NewProjectPage from "./pages/NewProjectPage/NewProjectPage.jsx";
+import NewPledgePage from "./pages/NewPledgePage/NewPledgePage.jsx";
+import UserPage from "./pages/UserProfilePage/UserProfilePage.jsx";
 
 const router = createBrowserRouter([
   {

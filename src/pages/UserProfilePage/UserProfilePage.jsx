@@ -1,4 +1,4 @@
-import useSelf from "../hooks/use-self";
+import useSelf from "../../hooks/use-self";
 
 function UserPage() {
   
@@ -13,7 +13,7 @@ function UserPage() {
   }
 
   return (
-    <article>
+    <article className="article">
       <h1>Hi {`${self.first_name}${self.last_name}` ?`${self.first_name} ${self.last_name}`: self.username }!</h1>
       <p>More profile info coming soon!</p>
     </article>

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import postNewUser from "../api/post-user";
-import postLogin from "../api/post-login";
+import postNewUser from "../../api/post-user";
+import postLogin from "../../api/post-login";
 
 
 function NewUserForm() {
@@ -53,7 +53,7 @@ function NewUserForm() {
   };
 
   return (
-    <form id="create-user-form">
+    <form className="form">
       <div>
         <label htmlFor="first_name">First Name:</label>
         <input

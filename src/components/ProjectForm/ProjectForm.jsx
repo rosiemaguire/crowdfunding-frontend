@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import postProject from "../api/post-project";
+import postProject from "../../api/post-project";
 
 function ProjectForm() {
   const navigate = useNavigate();
@@ -48,7 +48,7 @@ function ProjectForm() {
   };
 
   return (
-    <form id="create-project-form">
+    <form className="form">
       <div>
         <label htmlFor="title" className={formIsInvalid ? "error-message" : ""}>
           Project Title<span className={formIsInvalid ? "" : "hidden"}>*</span>:
@@ -67,8 +67,7 @@ function ProjectForm() {
           className={formIsInvalid ? "error-message" : ""}>
           Description<span className={formIsInvalid ? "" : "hidden"}>*</span>:
         </label>
-        <input
-          type="text"
+        <textarea
           id="description"
           name="description"
           placeholder="What do you want to tell your advocats?"

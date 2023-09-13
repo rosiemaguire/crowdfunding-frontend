@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
-import useProjects from "../hooks/use-projects";
-import ProjectCard from "../components/ProjectCard";
-import useAuth from "../hooks/use-auth";
+import useProjects from "../../hooks/use-projects";
+import ProjectCard from "../../components/ProjectCard";
+import useAuth from "../../hooks/use-auth";
 import "./HomePage.css";
+import "../../main.css"
 
 function HomePage() {
   const { projects, isLoading, error } = useProjects();
@@ -27,16 +28,18 @@ function HomePage() {
             return <ProjectCard key={key} projectData={projectData} />;
           })}
       </section>
-      {auth.token ? (
-        <Link to="/new-project" className="button centre-inline-block-object">
-          Start Fundraising
+      <div className={auth.token  ? "desktop-inline-buttons" : "desktop-single-button"}>
+        {auth.token ? (
+          <Link to="/new-project" className="button centre-block-object">
+            Start Fundraising
+          </Link>
+        ) : (
+          ""
+        )}
+        <Link to="/projects" className="button centre-block-object">
+          More Projects to Advocat
         </Link>
-      ) : (
-        ""
-      )}
-      <Link to="/projects" className="button centre-inline-block-object">
-        More Projects to Advocat
-      </Link>
+      </div>
     </article>
   );
 }
