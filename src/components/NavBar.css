@@ -23,6 +23,7 @@ header img {
 .mobile-menu-icon {
   background-color: var(--pastel-moss);
   border: none;
+  color: var(--font-blue);
 }
 
 .nav-bar ul {
