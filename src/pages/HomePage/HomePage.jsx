@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import useProjects from "../../hooks/use-projects";
-import ProjectCard from "../../components/ProjectCard";
 import useAuth from "../../hooks/use-auth";
+import ProjectCard from "../../components/ProjectCard/ProjectCard";
 import "./HomePage.css";
-import "../../main.css"
+import "../../main.css";
 
 function HomePage() {
   const { projects, isLoading, error } = useProjects();
