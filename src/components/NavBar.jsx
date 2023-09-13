@@ -43,11 +43,17 @@ function NavBar() {
               <Link to="/contact">Contact</Link>
             </li> */}
             {auth.token ? (
+              <>
+              <li>
+                <Link to="/profile">Profile</Link>
+              </li>
               <li>
                 <Link to="/" onClick={handleLogout}>
                   Log Out
                 </Link>
               </li>
+              </>
+
             ) : (
               <>
                 <li>

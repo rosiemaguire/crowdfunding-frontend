@@ -17,6 +17,7 @@ import ContactPage from "./pages/ContactPage.jsx";
 import NewUserPage from "./pages/NewUserPage.jsx";
 import NewProjectPage from "./pages/NewProjectPage.jsx";
 import NewPledgePage from "./pages/NewPledgePage.jsx";
+import UserPage from "./pages/UserProfilePage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -31,7 +32,8 @@ const router = createBrowserRouter([
       { path: "/contact", element: <ContactPage />},
       { path: "/create-account", element: <NewUserPage />},
       { path: "/new-project", element: <NewProjectPage />},
-      { path: "/pledges", element: <NewPledgePage />}
+      { path: "/pledges", element: <NewPledgePage />},
+      { path: "/profile", element: <UserPage />}
     ],
   },
 ]);
