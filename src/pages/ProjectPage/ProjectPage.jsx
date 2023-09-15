@@ -1,29 +1,34 @@
 import { Link, useParams } from "react-router-dom";
 import useProject from "../../hooks/use-project";
 import useAuth from "../../hooks/use-auth";
-import useSelf from "../../hooks/use-self";
+import useMyProjects from "../../hooks/use-myprojects";
 import "./ProjectPage.css";
 import "../../main.css";
 
 function ProjectPage() {
   const { auth } = useAuth();
+  const [myProjects, myProjectsAreLoading, myProjectsError] = useMyProjects();
+  const myProjectIds=[];
+  for (let myProject in myProjects){
+    myProjectIds.push(myProjects[myProject]['id'])
+  }
+
   // Here we use a hook that comes for free in react router called `useParams`
   // to get the id from the URL so that we can pass it to our useProject hook
   const { id } = useParams();
-  // console.log({id})
   // useProject returns three pieces of info, so we need to grab them all here
   const { project, isLoading, error } = useProject(id);
-  const { self, selfIsLoading, selfError } = useSelf();
 
-  if (isLoading || selfIsLoading) {
+  if (isLoading || myProjectsAreLoading ) {
     return <p>Loading...</p>;
   }
 
-  if (error || selfError) {
+  if (error || myProjectsError) {
     return <p>{error.message}</p>;
   }
 
   const dateCreated = new Date(project.date_created).toLocaleDateString();
+  const isMyProject = myProjectIds.includes(project.id);
 
   return (
     <div className="project-page">
@@ -46,9 +51,7 @@ function ProjectPage() {
         <br></br>
         <Link
           className={
-            auth.token &&
-            (self.username == project.owner ||
-              `${self.first_name} ${self.last_name}` == project.owner)
+            isMyProject
               ? "button"
               : "hidden"
           }>
