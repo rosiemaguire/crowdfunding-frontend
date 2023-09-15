@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import useProject from "../../hooks/use-project";
 import useAuth from "../../hooks/use-auth";
+import useSelf from "../../hooks/use-self";
 import "./ProjectPage.css";
 import "../../main.css";
 
@@ -12,20 +13,22 @@ function ProjectPage() {
   // console.log({id})
   // useProject returns three pieces of info, so we need to grab them all here
   const { project, isLoading, error } = useProject(id);
+  const { self, selfIsLoading, selfError } = useSelf();
 
-  if (isLoading) {
+  if (isLoading || selfIsLoading) {
     return <p>Loading...</p>;
   }
 
-  if (error) {
+  if (error || selfError) {
     return <p>{error.message}</p>;
   }
+
+  const dateCreated = new Date(project.date_created).toLocaleDateString();
 
   return (
     <div className="project-page">
       <img className="project-image centre-block-object" src={project.image} />
-      {/* <h3>Created at: {project.date_created}</h3> */}
-      <div>
+      <div className="advocat-button">
         <Link
           to={{ pathname: "/pledges/", search: `project=${id}` }}
           className={`button centre-block-object ${
@@ -35,22 +38,41 @@ function ProjectPage() {
         </Link>
       </div>
       <article className="project-blurb">
-        <h2>{project.title}</h2>
+        <h2>{project.title} </h2>
         <h5>Status: {`${project.is_open ? "Open" : "Closed"}`}</h5>
         <p>{project.description}</p>
+        <small>Created at: {dateCreated}</small>
+        <br></br>
+        <br></br>
+        <Link
+          className={
+            self != undefined
+              ? self.username == project.owner ||
+                `${self.first_name} ${self.last_name}` == project.owner
+                ? "button"
+                : "hidden"
+              : "hidden"
+          }>
+          UPDATE PROJECT
+        </Link>
       </article>
       <article className="recent-pledges">
-        <h3>Advocats</h3>
-        <ul>
-          {project.pledges.map((pledgeData, key) => {
-            return (
-              <li key={key}>
-                {pledgeData.amount} from{" "}
+        <h3 className={project.pledges.length !== 0 ? "" : "hidden"}>
+          Advocats
+        </h3>
+        {project.pledges.map((pledgeData, key) => {
+          return (
+            <ul key={key}>
+              <li>
+                ${pledgeData.amount} from{" "}
                 {pledgeData.anonymous ? "Anonymous" : pledgeData.supporter}
               </li>
-            );
-          })}
-        </ul>
+              <li className={pledgeData.comment ? "" : "hidden"}>
+                <q>{pledgeData.comment}</q>
+              </li>
+            </ul>
+          );
+        })}
       </article>
     </div>
   );
