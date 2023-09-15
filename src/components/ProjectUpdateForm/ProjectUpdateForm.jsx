@@ -1,23 +1,20 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
+import {  useState } from "react";
 import useProject from "../../hooks/use-project";
 import putProject from "../../api/put-project";
-
 
 function ProjectUpdateForm() {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
   const [formIsInvalid, setFormIsInvalid] = useState("");
-  
-
   // const { auth } = useAuth();
   // Here we use a hook that comes for free in react router called `useParams`
   // to get the id from the URL so that we can pass it to our useProject hook
   const { id } = useParams();
-  // console.log({id})
   // useProject returns three pieces of info, so we need to grab them all here
   const { project, isLoading, error } = useProject(id);
-  const [projectDetails, setProjectDetails] = useState({project});
+  const [formData, setFormData] = useState(`${project}`);
+
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -25,85 +22,87 @@ function ProjectUpdateForm() {
   if (error) {
     return <p>{error.message}</p>;
   }
-  
+
+  // if (!project.is_open) {
+  //   document.getElementById("title").setAttribute("disabled");
+  //   document.getElementById("description").setAttribute("disabled");
+  //   document.getElementById("goal").setAttribute("disabled");
+  //   document.getElementById("image").setAttribute("disabled");
+  // }
+
   const handleChange = (event) => {
     const { id, value } = event.target;
-    setProjectDetails((prevDetails) => ({
+    setFormData((prevDetails) => ({
       ...prevDetails,
       [id]: value,
     }));
   };
-
   const handleSubmit = (event) => {
     event.preventDefault();
     setFormIsInvalid("");
     setErrorMessage("");
     if (
-      projectDetails.title ||
-      projectDetails.description ||
-      projectDetails.goal ||
-      projectDetails.image ||
-      projectDetails.is_open ||
-      projectDetails.is_deleted
+      formData.title ||
+      formData.description ||
+      formData.goal ||
+      formData.image ||
+      formData.is_open ||
+      formData.is_deleted
     ) {
       putProject(
-        projectDetails.title,
-        projectDetails.description,
-        projectDetails.goal,
-        projectDetails.image,
-        projectDetails.is_open,
-        projectDetails.is_deleted
+        id,
+        formData.title,
+        formData.description,
+        formData.goal,
+        formData.image,
+        formData.is_open,
+        formData.is_deleted
       )
-        .then((response) => {
-          navigate(`/project/${response.id}/`);
+        .then(() => {
+          navigate(`/project/${id}/`);
         })
         .catch((error) => {
           setErrorMessage(error.message.split(","));
         });
     } else {
-      setFormIsInvalid("Please complete required fields.");
+      setFormIsInvalid("You must change one attribute to submit an update.");
     }
   };
 
   return (
     <form className="form">
       <div>
-        <label htmlFor="title" className={formIsInvalid ? "error-message" : ""}>
-          Project Title<span className={formIsInvalid ? "" : "hidden"}>*</span>:
-        </label>
+        <label htmlFor="title">Project Title:</label>
         <input
           type="text"
           id="title"
           name="title"
-          value={projectDetails.title}
+          defaultValue={project.title}
           onChange={handleChange}
         />
       </div>
       <div>
-        <label
-          htmlFor="description"
-          className={formIsInvalid ? "error-message" : ""}>
-          Description<span className={formIsInvalid ? "" : "hidden"}>*</span>:
-        </label>
+        <label htmlFor="description">Description:</label>
         <textarea
           id="description"
           name="description"
           placeholder="What do you want to tell your advocats?"
+          defaultValue={project.description}
           onChange={handleChange}
         />
       </div>
       <div>
-        <label htmlFor="goal" className={formIsInvalid ? "error-message" : ""}>
-          Goal<span className={formIsInvalid ? "" : "hidden"}>*</span>:
-        </label>
+        <label htmlFor="goal">Goal:</label>
         <input
           type="float"
           id="goal"
           name="goal"
           placeholder="amount"
+          defaultValue={project.goal}
           onChange={handleChange}
         />
       </div>
+      <img className="centre-block-object" src={project.image}></img>
       <div>
         <label htmlFor="image">Image:</label>
         <input
@@ -111,11 +110,22 @@ function ProjectUpdateForm() {
           id="image"
           name="image"
           placeholder="https://image-link.advocat"
+          defaultValue={project.image}
           onChange={handleChange}
         />
       </div>
+      <div>
+        <label htmlFor="is_open">Status:</label>
+        <select
+          id="is_open"
+          defaultValue={project.is_open}
+          onChange={handleChange}>
+          <option value="true">Open</option>
+          <option value="false">Closed</option>
+        </select>
+      </div>
       <button type="submit" className="button" onClick={handleSubmit}>
-        Create Project
+        Update Project
       </button>
       <div className="error-message">
         {Object.values(errorMessage).map((error, key) => (

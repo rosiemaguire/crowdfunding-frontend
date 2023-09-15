@@ -8,11 +8,6 @@ import "../../main.css";
 function ProjectPage() {
   const { auth } = useAuth();
   const [myProjects, myProjectsAreLoading, myProjectsError] = useMyProjects();
-  const myProjectIds=[];
-  for (let myProject in myProjects){
-    myProjectIds.push(myProjects[myProject]['id'])
-  }
-
   // Here we use a hook that comes for free in react router called `useParams`
   // to get the id from the URL so that we can pass it to our useProject hook
   const { id } = useParams();
@@ -27,8 +22,13 @@ function ProjectPage() {
     return <p>{error.message}</p>;
   }
 
+  const myProjectIds=[];
+  for (let myProject in myProjects){
+    myProjectIds.push(myProjects[myProject]['id'])
+  }
   const dateCreated = new Date(project.date_created).toLocaleDateString();
   const isMyProject = myProjectIds.includes(project.id);
+  const updateLink = `/update/project/${project.id}`
 
   return (
     <div className="project-page">
@@ -49,7 +49,7 @@ function ProjectPage() {
         <small>Created at: {dateCreated}</small>
         <br></br>
         <br></br>
-        <Link
+        <Link to={updateLink}
           className={
             isMyProject
               ? "button"

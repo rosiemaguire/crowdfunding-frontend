@@ -1,5 +1,5 @@
-async function putProject(title, description, goal, image, is_open,is_deleted) {
-  const url = `${import.meta.env.VITE_API_URL}/projects/`;
+async function putProject(id,title, description, goal, image, is_open,is_deleted) {
+  const url = `${import.meta.env.VITE_API_URL}/projects/${id}`;
   const token = window.localStorage.getItem("token");
   const body = {
     "title": title,
