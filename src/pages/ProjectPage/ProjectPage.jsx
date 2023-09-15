@@ -46,11 +46,10 @@ function ProjectPage() {
         <br></br>
         <Link
           className={
-            self != undefined
-              ? self.username == project.owner ||
-                `${self.first_name} ${self.last_name}` == project.owner
-                ? "button"
-                : "hidden"
+            auth.token &&
+            (self.username == project.owner ||
+              `${self.first_name} ${self.last_name}` == project.owner)
+              ? "button"
               : "hidden"
           }>
           UPDATE PROJECT
