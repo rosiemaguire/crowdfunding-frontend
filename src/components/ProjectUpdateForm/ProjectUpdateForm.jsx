@@ -38,6 +38,33 @@ function ProjectUpdateForm() {
       [id]: value,
     }));
   };
+
+  const deleteProject = (event) => {
+    event.preventDefault();
+    setFormIsInvalid("");
+    setErrorMessage("");
+    const confirmation = confirm("Are you sure you want to delete this project?")
+    if (confirmation) {
+      project.is_deleted = true;
+      console.log(project)
+      putProject(
+        id,
+        formData.title,
+        formData.description,
+        formData.goal,
+        formData.image,
+        formData.is_open,
+        project.is_deleted
+      ).then(() => {
+        alert("Project successfully deleted.");
+        navigate(`/profile/`);
+        })
+        .catch((error) => {
+          setErrorMessage(error.message.split(","));
+        });
+    }
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     setFormIsInvalid("");
@@ -131,6 +158,9 @@ function ProjectUpdateForm() {
       </div>
       <button type="submit" className="button" onClick={handleSubmit}>
         Update Project
+      </button>
+      <button type="submit" id="is_deleted" className="delete-button" onClick={deleteProject}>
+        Delete Project
       </button>
       <div className="error-message">
         {Object.values(errorMessage).map((error, key) => (

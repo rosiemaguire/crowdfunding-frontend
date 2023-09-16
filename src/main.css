@@ -126,6 +126,17 @@ h5 {
   text-align: center;
 }
 
+.delete-button {
+  color: var(--font-blue);
+  border: 4px solid var(--font-blue);
+  background-color: var(--pastel-moss);
+  border-radius: 10px;
+  font-family: "Just Another Hand", cursive;
+  /* font-size: 2rem; */
+  
+  font-weight: bold;
+  text-align: center;
+}
 @media (min-width: 768px) {
   .desktop-inline-buttons {
     display: grid;
@@ -186,4 +197,7 @@ h5 {
 /* chuck in some spacing for non form elements */
 .article {
   margin: 16px;
+}
+a:hover, .button:hover{
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
 }
