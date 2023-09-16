@@ -32,7 +32,7 @@ function NavBar() {
           </button>
           <ul
             className={isMobile ? "hidden" : ""}
-            onClick={() => setIsMobile(false)}>
+            onClick={() => setIsMobile(!isMobile)}>
             <li>
               <Link to="/">Home</Link>
             </li>

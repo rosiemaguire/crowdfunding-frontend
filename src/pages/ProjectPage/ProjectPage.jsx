@@ -14,7 +14,7 @@ function ProjectPage() {
   // useProject returns three pieces of info, so we need to grab them all here
   const { project, isLoading, error } = useProject(id);
 
-  if (isLoading || myProjectsAreLoading ) {
+  if (isLoading || myProjectsAreLoading) {
     return <p>Loading...</p>;
   }
 
@@ -22,13 +22,13 @@ function ProjectPage() {
     return <p>{error.message}</p>;
   }
 
-  const myProjectIds=[];
-  for (let myProject in myProjects){
-    myProjectIds.push(myProjects[myProject]['id'])
+  const myProjectIds = [];
+  for (let myProject in myProjects) {
+    myProjectIds.push(myProjects[myProject]["id"]);
   }
   const dateCreated = new Date(project.date_created).toLocaleDateString();
   const isMyProject = myProjectIds.includes(project.id);
-  const updateLink = `/update/project/${project.id}`
+  const updateLink = `/update/project/${project.id}`;
 
   return (
     <div className="project-page">
@@ -36,27 +36,29 @@ function ProjectPage() {
       <div className="advocat-button">
         <Link
           to={{ pathname: "/pledges/", search: `project=${id}` }}
-          className={`button centre-block-object ${
-            auth.token && project.is_open ? "" : "hidden"
-          }`}>
+          className={
+            auth.token && project.is_open
+              ? "button centre-block-object"
+              : "hidden"
+          }>
           BE AN ADVOCAT
         </Link>
       </div>
       <article className="project-blurb">
+        
+        <div className="">
+          <Link to={updateLink} className={isMyProject ? "float-right button" : "hidden"}>
+            UPDATE PROJECT
+          </Link>
+        </div>
         <h2>{project.title} </h2>
-        <h5>Status: {`${project.is_open ? "Open" : "Closed"}`}</h5>
+        <small>{project.owner} </small>
+
         <p>{project.description}</p>
-        <small>Created at: {dateCreated}</small>
-        <br></br>
-        <br></br>
-        <Link to={updateLink}
-          className={
-            isMyProject
-              ? "button"
-              : "hidden"
-          }>
-          UPDATE PROJECT
-        </Link>
+        <small className="small">
+          Status: {`${project.is_open ? "Open" : "Closed"}`}
+        </small>
+        <small className="small">Created at: {dateCreated}</small>
       </article>
       <article className="recent-pledges">
         <h3 className={project.pledges.length !== 0 ? "" : "hidden"}>

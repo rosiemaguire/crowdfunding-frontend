@@ -62,7 +62,7 @@ function LoginForm() {
           type="password"
           name="password"
           id="password"
-          placeholder="password"
+          placeholder="Password"
           onChange={handleChange}
         />
       </div>

@@ -75,10 +75,11 @@ h6 {
 
 h1 {
   font-size: 6rem;
+  color:var(--lime-green)
 }
 
 h2 {
-  font-size: 3.5rem;
+  font-size: 5rem;
 }
 
 h3 {
@@ -92,6 +93,7 @@ h3 {
   
   h2 {
     font-size: 7rem;
+    color:var(--lime-green)
   }
   
   h3 {
@@ -107,6 +109,9 @@ h5 {
   font-size: 2rem;
 }
 
+.small{
+  display: block;
+}
 /* Button and centre-styled elements */
 .centre-block-object {
   margin-left: auto;
@@ -124,6 +129,7 @@ h5 {
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
+  padding: 8px;
 }
 
 .delete-button {
@@ -132,8 +138,6 @@ h5 {
   background-color: var(--pastel-moss);
   border-radius: 10px;
   font-family: "Just Another Hand", cursive;
-  /* font-size: 2rem; */
-  
   font-weight: bold;
   text-align: center;
 }
@@ -198,6 +202,6 @@ h5 {
 .article {
   margin: 16px;
 }
-a:hover, .button:hover{
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 1);
+a:hover, .button:hover, .delete-button:hover{
+  text-shadow: 1px 1px 1px rgba(4, 14,33, 1);
 }

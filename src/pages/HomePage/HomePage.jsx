@@ -31,13 +31,13 @@ function HomePage() {
       <div className={auth.token  ? "desktop-inline-buttons" : "desktop-single-button"}>
         {auth.token ? (
           <Link to="/new-project" className="button centre-block-object">
-            Start Fundraising
+            START FUNDRAISING
           </Link>
         ) : (
           ""
         )}
         <Link to="/projects" className="button centre-block-object">
-          More Projects to Advocat
+          MORE PROJECTS TO ADVOCAT
         </Link>
       </div>
     </article>

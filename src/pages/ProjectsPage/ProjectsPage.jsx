@@ -21,7 +21,7 @@ function ProjectsPage() {
       <section className="desktop-inline-buttons">
       {auth.token ? (
         <Link to="/new-project" className="button centre-block-object">
-          Start Fundraising
+          START FUNDRAISING
         </Link>
       ) : (
         ""

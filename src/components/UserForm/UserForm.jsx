@@ -80,7 +80,7 @@ function NewUserForm() {
           type="email"
           id="email"
           name="email"
-          placeholder="your email address"
+          placeholder="email@address.com"
           onChange={handleChange}
         />
       </div>
@@ -108,7 +108,7 @@ function NewUserForm() {
           type="password"
           name="password"
           id="password"
-          placeholder="password"
+          placeholder="Password"
           onChange={handleChange}
         />
       </div>

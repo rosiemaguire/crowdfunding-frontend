@@ -2,6 +2,7 @@ import useSelf from "../../hooks/use-self";
 import useMyProjects from "../../hooks/use-myprojects";
 import ProjectList from "../../components/ProjectList/ProjectList";
 import "./UserProfilePage.css"
+// import { Link } from "react-router-dom";
 
 function UserPage() {
   
@@ -20,15 +21,16 @@ function UserPage() {
     <div>
     <article className="article">
       <h1>Hi {`${self.first_name}${self.last_name}` ?`${self.first_name} ${self.last_name}`: self.username }!</h1>
-      <p>More profile info coming soon!</p>
       <section id="my-details">
       <h3>My Details</h3>
       <p>Username: {self.username}</p>
       <p>First name: {self.first_name}</p>
       <p>Surname: {self.last_name}</p>
       <p>Email: {self.email}</p>
+      {/* <Link className="button">Update My Details</Link> */}
       </section>
-    
+      <br></br>
+      <h4 className="centre-text">More profile info coming soon!</h4>
     <article id="my-projects" className={myProjects.length !== 0 ? "" : "hidden"}>
       <h3>My Projects</h3>
       <section id="my-project-list">
