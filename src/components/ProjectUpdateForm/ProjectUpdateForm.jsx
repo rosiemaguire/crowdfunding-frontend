@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import {  useState } from "react";
+import { useState } from "react";
 import useProject from "../../hooks/use-project";
 import putProject from "../../api/put-project";
 
@@ -7,7 +7,6 @@ function ProjectUpdateForm() {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
   const [formIsInvalid, setFormIsInvalid] = useState("");
-  // const { auth } = useAuth();
   // Here we use a hook that comes for free in react router called `useParams`
   // to get the id from the URL so that we can pass it to our useProject hook
   const { id } = useParams();
@@ -22,13 +21,15 @@ function ProjectUpdateForm() {
   if (error) {
     return <p>{error.message}</p>;
   }
-
-  // if (!project.is_open) {
-  //   document.getElementById("title").setAttribute("disabled");
-  //   document.getElementById("description").setAttribute("disabled");
-  //   document.getElementById("goal").setAttribute("disabled");
-  //   document.getElementById("image").setAttribute("disabled");
-  // }
+  const inputs = document.querySelectorAll("input");
+  if (project.is_open) {
+    if (inputs.length > 0) {
+      document.getElementById("title").disabled = false;
+      document.getElementById("description").disabled = false;
+      document.getElementById("goal").disabled = false;
+      document.getElementById("image").disabled = false;
+    }
+  }
 
   const handleChange = (event) => {
     const { id, value } = event.target;
@@ -70,7 +71,7 @@ function ProjectUpdateForm() {
   };
 
   return (
-    <form className="form">
+    <form className="form project-update-form">
       <div>
         <label htmlFor="title">Project Title:</label>
         <input
@@ -79,6 +80,7 @@ function ProjectUpdateForm() {
           name="title"
           defaultValue={project.title}
           onChange={handleChange}
+          disabled
         />
       </div>
       <div>
@@ -89,6 +91,7 @@ function ProjectUpdateForm() {
           placeholder="What do you want to tell your advocats?"
           defaultValue={project.description}
           onChange={handleChange}
+          disabled
         />
       </div>
       <div>
@@ -100,9 +103,10 @@ function ProjectUpdateForm() {
           placeholder="amount"
           defaultValue={project.goal}
           onChange={handleChange}
+          disabled
         />
       </div>
-      <img className="centre-block-object" src={project.image}></img>
+      <img src={project.image}></img>
       <div>
         <label htmlFor="image">Image:</label>
         <input
@@ -112,6 +116,7 @@ function ProjectUpdateForm() {
           placeholder="https://image-link.advocat"
           defaultValue={project.image}
           onChange={handleChange}
+          disabled
         />
       </div>
       <div>
