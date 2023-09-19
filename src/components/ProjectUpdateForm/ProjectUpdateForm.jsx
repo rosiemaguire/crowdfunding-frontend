@@ -13,8 +13,6 @@ function ProjectUpdateForm() {
   // useProject returns three pieces of info, so we need to grab them all here
   const { project, isLoading, error, setProject } = useProject(id);
 
-  
-
   if (isLoading) {
     return <p>Loading...</p>;
   }

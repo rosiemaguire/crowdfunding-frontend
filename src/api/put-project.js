@@ -1,14 +1,6 @@
 async function putProject(id,title, description, goal, image, is_open,is_deleted) {
   const url = `${import.meta.env.VITE_API_URL}/projects/${id}/`;
   const token = window.localStorage.getItem("token");
-  const body = {
-    "title": title,
-    "description": description,
-    "goal": goal,
-    "image": image,
-    "is_open": is_open,
-    "is_deleted": is_deleted,
-  };
 
   const response = await fetch(url, {
     method: "PUT",
@@ -16,7 +8,14 @@ async function putProject(id,title, description, goal, image, is_open,is_deleted
       "Content-Type": "application/json",
       Authorization: `Token ${token}`,
     },
-    body: JSON.stringify(body),
+    body: JSON.stringify({
+      "title": title,
+      "description": description,
+      "goal": goal,
+      "image": image,
+      "is_open": is_open,
+      "is_deleted": is_deleted,
+    }),
   });
 
   if (!response.ok) {

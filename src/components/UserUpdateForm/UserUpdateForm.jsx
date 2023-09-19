@@ -1,53 +1,62 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import postNewUser from "../../api/post-user";
-import postLogin from "../../api/post-login";
+import useSelf from "../../hooks/use-self";
+import putUser from "../../api/put-user";
 
-function NewUserForm() {
+function UserUpdateForm() {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
   const [formIsInvalid, setFormIsInvalid] = useState("");
-  const [userDetails, setUserDetails] = useState({
+  const { self, isLoading, error } = useSelf();
+  const [formData, setFormData ] = useState({
     first_name: "",
     last_name: "",
     email: "",
-    username: "",
-    password: "",
+    username: ""
   });
 
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>{error.message}</p>;
+  }
+  
   const handleChange = (event) => {
     const { id, value } = event.target;
-    setUserDetails((prevDetails) => ({
+    setFormData((prevDetails) => ({
       ...prevDetails,
       [id]: value,
     }));
   };
-  
+
+
   const handleSubmit = (event) => {
     event.preventDefault();
     setFormIsInvalid("");
     setErrorMessage("");
-    if (userDetails.username && userDetails.password && userDetails.email) {
-      postNewUser(
-        userDetails.first_name,
-        userDetails.last_name,
-        userDetails.email,
-        userDetails.username,
-        userDetails.password
+    if (
+      formData.first_name ||
+      formData.last_name ||
+      formData.email ||
+      formData.username
+    ) {
+      putUser(
+        self.id,
+        formData.first_name,
+        formData.last_name,
+        formData.email,
+        formData.username
       )
         .then(() => {
-          postLogin(userDetails.username, userDetails.password).then(
-            (response) => {
-              window.localStorage.setItem("token", response.token);
-              navigate("/");
-            }
-          );
+          navigate(`/profile`);
         })
         .catch((error) => {
           setErrorMessage(error.message.split(","));
         });
     } else {
-      setFormIsInvalid("Please complete required fields.");
+      setFormIsInvalid("You must change one attribute to submit an update.");
     }
   };
 
@@ -59,7 +68,7 @@ function NewUserForm() {
           type="text"
           id="first_name"
           name="first_name"
-          placeholder="First Name"
+          defaultValue={self.first_name}
           onChange={handleChange}
         />
       </div>
@@ -69,7 +78,7 @@ function NewUserForm() {
           type="text"
           id="last_name"
           name="last_name"
-          placeholder="Surname"
+          defaultValue={self.last_name}
           onChange={handleChange}
         />
       </div>
@@ -81,7 +90,7 @@ function NewUserForm() {
           type="email"
           id="email"
           name="email"
-          placeholder="email@address.com"
+          defaultValue={self.email}
           onChange={handleChange}
         />
       </div>
@@ -95,26 +104,12 @@ function NewUserForm() {
           type="text"
           id="username"
           name="username"
-          placeholder="Username"
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label
-          htmlFor="password"
-          className={formIsInvalid ? "error-message" : ""}>
-          Password<span className={formIsInvalid ? "" : "hidden"}>*</span>:
-        </label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          placeholder="Password"
+          defaultValue={self.username}
           onChange={handleChange}
         />
       </div>
       <button type="submit" className="button" onClick={handleSubmit}>
-        Create account
+        Update Details
       </button>
       <div className="error-message">
         {Object.values(errorMessage).map((error, key) => (
@@ -126,4 +121,4 @@ function NewUserForm() {
   );
 }
 
-export default NewUserForm;
+export default UserUpdateForm;

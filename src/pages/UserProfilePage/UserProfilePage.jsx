@@ -2,12 +2,13 @@ import useSelf from "../../hooks/use-self";
 import useMyProjects from "../../hooks/use-myprojects";
 import ProjectList from "../../components/ProjectList/ProjectList";
 import "./UserProfilePage.css"
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function UserPage() {
   
   const { self, isLoading, error } = useSelf();
   const [myProjects, myProjectsAreLoading, myProjectsError] = useMyProjects();
+  // const updateLink = 
 
   if (isLoading || myProjectsAreLoading) {
     return <p>Loading...</p>;
@@ -27,7 +28,7 @@ function UserPage() {
       <p>First name: {self.first_name}</p>
       <p>Surname: {self.last_name}</p>
       <p>Email: {self.email}</p>
-      {/* <Link className="button">Update My Details</Link> */}
+      <Link to="/profile/update" className="button">Update My Details</Link>
       </section>
       <br></br>
       <h4 className="centre-text">More profile info coming soon!</h4>

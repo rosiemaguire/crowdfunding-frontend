@@ -1,23 +1,30 @@
 
-async function postUser(first_name,last_name,email,username,password) {
-  const url = `${import.meta.env.VITE_API_URL}/users/`;
+async function putUser(id,first_name,last_name,email,username) {
+  const url = `${import.meta.env.VITE_API_URL}/users/${id}/`;
+  const token = window.localStorage.getItem("token");
+  const body = {
+    "first_name": first_name,
+    "last_name": last_name,
+    "email": email,
+    "username": username,
+  }
 
+  for (let bod in body){
+    if (body[bod] == ""){
+      delete body[bod]
+    }
+  }
   const response =  await fetch(url, {
-    method: "POST",
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Token ${token}`,
     },
-    body: JSON.stringify({
-      "first_name": first_name,
-      "last_name": last_name,
-      "email": email,
-      "username": username,
-      "password": password,
-    }),
+    body: JSON.stringify(body),
   });
 
   if (!response.ok) {
-    const fallbackError = `Error creating user`;
+    const fallbackError = `Error updating user`;
 
     const data = await response.json().catch(() => {
       throw new Error(fallbackError);
@@ -46,4 +53,4 @@ async function postUser(first_name,last_name,email,username,password) {
   return await response.json();
 }
 
-export default postUser;
+export default putUser;
