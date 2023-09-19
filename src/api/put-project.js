@@ -1,5 +1,5 @@
 async function putProject(id,title, description, goal, image, is_open,is_deleted) {
-  const url = `${import.meta.env.VITE_API_URL}/projects/${id}`;
+  const url = `${import.meta.env.VITE_API_URL}/projects/${id}/`;
   const token = window.localStorage.getItem("token");
   const body = {
     "title": title,
@@ -9,14 +9,6 @@ async function putProject(id,title, description, goal, image, is_open,is_deleted
     "is_open": is_open,
     "is_deleted": is_deleted,
   };
-
-  for (let bod in body) {
-    if (bod !=("is_open") && bod !=("is_deleted")) {
-      if (!body[bod]){
-        delete body[bod];
-      }
-    }
-  }
 
   const response = await fetch(url, {
     method: "PUT",

@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useState, ReactDOM } from "react";
+import { useState } from "react";
 import useProject from "../../hooks/use-project";
 import putProject from "../../api/put-project";
 
@@ -11,8 +11,9 @@ function ProjectUpdateForm() {
   // to get the id from the URL so that we can pass it to our useProject hook
   const { id } = useParams();
   // useProject returns three pieces of info, so we need to grab them all here
-  const { project, isLoading, error } = useProject(id);
-  const [formData, setFormData] = useState(`${project}`);
+  const { project, isLoading, error, setProject } = useProject(id);
+
+  
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -21,10 +22,10 @@ function ProjectUpdateForm() {
   if (error) {
     return <p>{error.message}</p>;
   }
-
+  
   const handleChange = (event) => {
     const { id, value } = event.target;
-    setFormData((prevDetails) => ({
+    setProject((prevDetails) => ({
       ...prevDetails,
       [id]: value,
     }));
@@ -37,16 +38,17 @@ function ProjectUpdateForm() {
     const confirmation = confirm(
       "Are you sure you want to delete this project?"
     );
+
     if (confirmation) {
       project.is_deleted = true;
       console.log(project);
       putProject(
-        id,
-        formData.title,
-        formData.description,
-        formData.goal,
-        formData.image,
-        formData.is_open,
+        project.id,
+        project.title,
+        project.description,
+        project.goal,
+        project.image,
+        project.is_open,
         project.is_deleted
       )
         .then(() => {
@@ -64,21 +66,20 @@ function ProjectUpdateForm() {
     setFormIsInvalid("");
     setErrorMessage("");
     if (
-      formData.title ||
-      formData.description ||
-      formData.goal ||
-      formData.image ||
-      formData.is_open ||
-      formData.is_deleted
+      project.title ||
+      project.description ||
+      project.goal ||
+      project.image ||
+      project.is_open
     ) {
       putProject(
-        id,
-        formData.title,
-        formData.description,
-        formData.goal,
-        formData.image,
-        formData.is_open,
-        formData.is_deleted
+        project.id,
+        project.title,
+        project.description,
+        project.goal,
+        project.image,
+        project.is_open,
+        project.is_deleted
       )
         .then(() => {
           navigate(`/project/${id}/`);
