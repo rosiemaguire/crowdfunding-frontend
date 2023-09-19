@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, ReactDOM } from "react";
 import useProject from "../../hooks/use-project";
 import putProject from "../../api/put-project";
 
@@ -21,15 +21,6 @@ function ProjectUpdateForm() {
   if (error) {
     return <p>{error.message}</p>;
   }
-  const inputs = document.querySelectorAll("input");
-  if (project.is_open) {
-    if (inputs.length > 0) {
-      document.getElementById("title").disabled = false;
-      document.getElementById("description").disabled = false;
-      document.getElementById("goal").disabled = false;
-      document.getElementById("image").disabled = false;
-    }
-  }
 
   const handleChange = (event) => {
     const { id, value } = event.target;
@@ -43,10 +34,12 @@ function ProjectUpdateForm() {
     event.preventDefault();
     setFormIsInvalid("");
     setErrorMessage("");
-    const confirmation = confirm("Are you sure you want to delete this project?")
+    const confirmation = confirm(
+      "Are you sure you want to delete this project?"
+    );
     if (confirmation) {
       project.is_deleted = true;
-      console.log(project)
+      console.log(project);
       putProject(
         id,
         formData.title,
@@ -55,9 +48,10 @@ function ProjectUpdateForm() {
         formData.image,
         formData.is_open,
         project.is_deleted
-      ).then(() => {
-        alert("Project successfully deleted.");
-        navigate(`/profile/`);
+      )
+        .then(() => {
+          alert("Project successfully deleted.");
+          navigate(`/profile/`);
         })
         .catch((error) => {
           setErrorMessage(error.message.split(","));
@@ -107,7 +101,7 @@ function ProjectUpdateForm() {
           name="title"
           defaultValue={project.title}
           onChange={handleChange}
-          disabled
+          {...(project.is_open ? {} : { disabled: true })}
         />
       </div>
       <div>
@@ -118,7 +112,7 @@ function ProjectUpdateForm() {
           placeholder="What do you want to tell your advocats?"
           defaultValue={project.description}
           onChange={handleChange}
-          disabled
+          {...(project.is_open ? {} : { disabled: true })}
         />
       </div>
       <div>
@@ -130,7 +124,7 @@ function ProjectUpdateForm() {
           placeholder="amount"
           defaultValue={project.goal}
           onChange={handleChange}
-          disabled
+          {...(project.is_open ? {} : { disabled: true })}
         />
       </div>
       <img src={project.image}></img>
@@ -143,7 +137,7 @@ function ProjectUpdateForm() {
           placeholder="https://image-link.advocat"
           defaultValue={project.image}
           onChange={handleChange}
-          disabled
+          {...(project.is_open ? {} : { disabled: true })}
         />
       </div>
       <div>
@@ -159,7 +153,11 @@ function ProjectUpdateForm() {
       <button type="submit" className="button" onClick={handleSubmit}>
         Update Project
       </button>
-      <button type="submit" id="is_deleted" className="delete-button" onClick={deleteProject}>
+      <button
+        type="submit"
+        id="is_deleted"
+        className="delete-button"
+        onClick={deleteProject}>
         Delete Project
       </button>
       <div className="error-message">
