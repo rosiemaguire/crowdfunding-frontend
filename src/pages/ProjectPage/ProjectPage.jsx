@@ -30,6 +30,14 @@ function ProjectPage() {
   const isMyProject = myProjectIds.includes(project.id);
   const updateLink = `/update/project/${project.id}`;
 
+  project.amountRaised = 0;
+  console.log(project)
+  for(let i in project.pledges){
+    if (!project.pledges[i].is_deleted){
+      project.amountRaised += project.pledges[i].amount
+    } 
+  }
+
   return (
     <div className="project-page">
       <img className="project-image centre-block-object" src={project.image} />
@@ -44,6 +52,8 @@ function ProjectPage() {
           BE AN ADVOCAT
         </Link>
       </div>
+      <h4>${(project.amountRaised).toFixed(2)} raised / ${(project.goal).toFixed(2)} goal</h4>
+
       <article className="project-blurb">
         
         <div className="">
@@ -68,7 +78,7 @@ function ProjectPage() {
           return (
             <ul key={key}>
               <li>
-                ${pledgeData.amount} from{" "}
+                ${(pledgeData.amount).toFixed(2)} from
                 {pledgeData.anonymous ? "Anonymous" : pledgeData.supporter}
               </li>
               <li className={pledgeData.comment ? "" : "hidden"}>

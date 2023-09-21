@@ -5,10 +5,15 @@
 .project-image {
   max-width: 400px;
 }
+
 .project-page .button {
   max-width: 240px;
   margin: 30px auto;
   line-height: 1;
+}
+
+.project-page h4 {
+  text-align: center;
 }
 
 @media (min-width: 768px) {
@@ -65,5 +70,4 @@ q {
 }
 .recent-pledges {
   margin-top: 40px;
-  /* margin: 40px auto; */
 }
