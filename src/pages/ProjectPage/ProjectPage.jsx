@@ -2,17 +2,15 @@ import { Link, useParams } from "react-router-dom";
 import useProject from "../../hooks/use-project";
 import useAuth from "../../hooks/use-auth";
 import useMyProjects from "../../hooks/use-myprojects";
+import isMyProject from "../../components/functions/isMyProject";
 import "./ProjectPage.css";
 import "../../main.css";
 
 function ProjectPage() {
   const { auth } = useAuth();
-  const [myProjects, myProjectsAreLoading, myProjectsError] = useMyProjects();
-  // Here we use a hook that comes for free in react router called `useParams`
-  // to get the id from the URL so that we can pass it to our useProject hook
   const { id } = useParams();
-  // useProject returns three pieces of info, so we need to grab them all here
   const { project, isLoading, error } = useProject(id);
+  const [myProjects, myProjectsAreLoading, myProjectsError] = useMyProjects();
 
   if (isLoading || myProjectsAreLoading) {
     return <p>Loading...</p>;
@@ -21,17 +19,11 @@ function ProjectPage() {
   if (error || myProjectsError) {
     return <p>{error.message}</p>;
   }
-
-  const myProjectIds = [];
-  for (let myProject in myProjects) {
-    myProjectIds.push(myProjects[myProject]["id"]);
-  }
+  const myProject = isMyProject(myProjects,project.id)
   const dateCreated = new Date(project.date_created).toLocaleDateString();
-  const isMyProject = myProjectIds.includes(project.id);
   const updateLink = `/update/project/${project.id}`;
 
   project.amountRaised = 0;
-  console.log(project)
   for(let i in project.pledges){
     if (!project.pledges[i].is_deleted){
       project.amountRaised += project.pledges[i].amount
@@ -57,7 +49,7 @@ function ProjectPage() {
       <article className="project-blurb">
         
         <div className="">
-          <Link to={updateLink} className={isMyProject ? "float-right button" : "hidden"}>
+          <Link to={updateLink} className={myProject ? "float-right button" : "hidden"}>
             UPDATE PROJECT
           </Link>
         </div>
@@ -78,11 +70,13 @@ function ProjectPage() {
           return (
             <ul key={key}>
               <li>
-                ${(pledgeData.amount).toFixed(2)} from
-                {pledgeData.anonymous ? "Anonymous" : pledgeData.supporter}
+                ${(pledgeData.amount).toFixed(2)} from {pledgeData.anonymous ? "Anonymous" : pledgeData.supporter}
               </li>
               <li className={pledgeData.comment ? "" : "hidden"}>
                 <q>{pledgeData.comment}</q>
+              </li>
+              <li>
+                <Link className="edit-pledge">edit</Link>
               </li>
             </ul>
           );
