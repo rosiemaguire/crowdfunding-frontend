@@ -16,6 +16,11 @@
   text-align: center;
 }
 
+.edit-pledge {
+  text-decoration: underline;
+  font-size: 0.6rem;
+}
+
 @media (min-width: 768px) {
   .project-page {
     display: grid;

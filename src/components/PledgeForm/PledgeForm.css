@@ -6,6 +6,10 @@
   margin: 0 16px;
 }
 
+h2 {
+  text-align: center;
+}
+
 @media (min-width: 768px) {
   .form .checkbox {
     margin: 16px auto;

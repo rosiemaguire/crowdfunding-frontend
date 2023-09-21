@@ -1,4 +1,3 @@
-// import useMyProjects from "../../hooks/use-myprojects";
 export default function isMyProject(myProjects,projectId) {
   const myProjectIds = [];
   for (let myProject in myProjects) {

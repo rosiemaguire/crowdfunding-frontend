@@ -7,11 +7,9 @@ function ProjectUpdateForm() {
   const navigate = useNavigate();
   const [errorMessage, setErrorMessage] = useState("");
   const [formIsInvalid, setFormIsInvalid] = useState("");
-  // Here we use a hook that comes for free in react router called `useParams`
-  // to get the id from the URL so that we can pass it to our useProject hook
+  const [formData, setFormData] = useState("");
   const { id } = useParams();
-  // useProject returns three pieces of info, so we need to grab them all here
-  const { project, isLoading, error, setProject } = useProject(id);
+  const [project, isLoading, error] = useProject(id);
 
   if (isLoading) {
     return <p>Loading...</p>;
@@ -23,7 +21,7 @@ function ProjectUpdateForm() {
   
   const handleChange = (event) => {
     const { id, value } = event.target;
-    setProject((prevDetails) => ({
+    setFormData((prevDetails) => ({
       ...prevDetails,
       [id]: value,
     }));
@@ -39,14 +37,13 @@ function ProjectUpdateForm() {
 
     if (confirmation) {
       project.is_deleted = true;
-      console.log(project);
       putProject(
         project.id,
-        project.title,
-        project.description,
-        project.goal,
-        project.image,
-        project.is_open,
+        formData.title,
+        formData.description,
+        formData.goal,
+        formData.image,
+        formData.is_open,
         project.is_deleted
       )
         .then(() => {
@@ -64,19 +61,19 @@ function ProjectUpdateForm() {
     setFormIsInvalid("");
     setErrorMessage("");
     if (
-      project.title ||
-      project.description ||
-      project.goal ||
-      project.image ||
-      project.is_open
+      formData.title ||
+      formData.description ||
+      formData.goal ||
+      formData.image ||
+      formData.is_open
     ) {
       putProject(
         project.id,
-        project.title,
-        project.description,
-        project.goal,
-        project.image,
-        project.is_open,
+        formData.title,
+        formData.description,
+        formData.goal,
+        formData.image,
+        formData.is_open,
         project.is_deleted
       )
         .then(() => {

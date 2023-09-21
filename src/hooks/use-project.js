@@ -23,5 +23,5 @@ export default function useProject(projectId) {
     //  will re-run if the projectId changes
   }, [projectId]);
   
-  return { project, isLoading, error, setProject };
+  return [ project, isLoading, error ];
 }

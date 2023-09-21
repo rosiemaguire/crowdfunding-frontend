@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import postPledge from "../../api/post-pledge";
+import useProject from "../../hooks/use-project";
 import "./PledgeForm.css"
 
 function PledgeForm() {
@@ -9,36 +10,36 @@ function PledgeForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [formIsInvalid, setFormIsInvalid] = useState("");
+  const [project, isLoading, error] = useProject(projectId);
   const [pledgeDetails, setPledgeDetails] = useState({
     amount: "",
     comment: "",
-    anonymous: false,
+    anonymous: "false",
     project: projectId,
   });
-  console.log(pledgeDetails);
+
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>{error.message}</p>;
+  }
   const handleChange = (event) => {
+    if (event.target.name == "anonymous" ) {
+      document.getElementById("anonymous").value = event.target.checked
+    }
     const { id, value } = event.target;
     setPledgeDetails((prevDetails) => ({
       ...prevDetails,
       [id]: value,
     }));
-    // to find out if it's checked or not; returns true or false
-    const checked = event.target.checked;
-
-    // to get the checked name
-    const checkedName = event.target.name;
-    console.log(checked, checkedName);
-    // update the anonymous field only if checkbox input has been clicked
-    if (checkedName == "anonymous") {
-      pledgeDetails.anonymous = checked;
-    }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     setFormIsInvalid("");
     setErrorMessage("");
-    console.log(pledgeDetails);
     if (pledgeDetails.amount) {
       postPledge(
         pledgeDetails.amount,
@@ -58,8 +59,9 @@ function PledgeForm() {
   };
 
   return (
-    <section>
+    <section>  
       <form className= {isSubmitted ? "hidden" : "form"} >
+      <h2 >{`Advocat for ${project.title}`}</h2>
         <div>
           <label htmlFor="amount">Amount:</label>
           <input
@@ -93,13 +95,12 @@ function PledgeForm() {
           Submit
         </button>
         <p className="error-message">{errorMessage}</p>
-        {/*<sub className={errorMessage ? "" : "hidden"}>Please check your username and password.</sub> */}
         <p>{formIsInvalid}</p>
       </form>
       <article className={isSubmitted ? "desktop-inline-buttons" : "hidden"}>
               <h1>Thank you for your donation!</h1>
               <Link to="/projects" className="button centre-block-object">View other projects</Link>
-              <Link to={`/project/${projectId}`} className="button centre-block-object">Return to previous project</Link>
+              <Link to={`/project/${projectId}`} className="button centre-block-object">{`Return to ${project.title}`}</Link>
             </article>
     </section>
   );
