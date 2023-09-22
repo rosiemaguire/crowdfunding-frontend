@@ -3,7 +3,7 @@
 }
 
 .project-image {
-  max-width: 400px;
+  max-width: 100%;
 }
 
 .project-page .button {
@@ -13,6 +13,9 @@
 }
 
 @media (min-width: 768px) {
+  .project-image {
+    max-width: 400px;
+  }
   .project-page .button {
     margin: 20px auto;
     justify-content: center;
