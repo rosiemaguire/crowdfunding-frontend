@@ -22,11 +22,11 @@ function ProjectPage() {
   if (error) {
     return <p>{error.message}</p>;
   }
-  
+
   if (myProjectsError) {
-    return <p>{myProjectsError.message}</p>
+    return <p>{myProjectsError.message}</p>;
   }
-  
+
   const dateCreated = new Date(project.date_created).toLocaleDateString();
   const updateLink = `/update/project/${project.id}`;
 
@@ -39,68 +39,77 @@ function ProjectPage() {
 
   return (
     <div className="project-page">
-      <img className="project-image centre-block-object" src={project.image} />
-      <div className="advocat-button">
-        <Link
-          to={{ pathname: "/pledges/", search: `project=${id}` }}
-          className={
-            auth.token && project.is_open
-              ? "button centre-block-object"
-              : "hidden"
-          }>
-          BE AN ADVOCAT
-        </Link>
-      </div>
-      <h4>
-        ${project.amountRaised.toFixed(2)} raised / ${project.goal.toFixed(2)}{" "}
-        goal
-      </h4>
-      <article className="project-blurb">
-        <div className="">
+      <h2>{project.title}</h2>
+      <section className="first-colummn">
+        <img
+          className="project-image centre-block-object"
+          src={project.image}
+        />
+        <h4>${project.amountRaised.toFixed(2)} raised </h4>
+        <h5>of my ${project.goal.toFixed(2)} goal</h5>
+        <progress
+          id="fundraising-progress"
+          value={project.amountRaised}
+          max={project.goal}></progress>
+        <div className="advocat-button">
           <Link
-            to={updateLink}
+            to={{ pathname: "/pledges/", search: `project=${id}` }}
             className={
-              isMyProject(myProjects, project.id)
-                ? "float-right button"
+              auth.token && project.is_open
+                ? "button centre-block-object"
                 : "hidden"
             }>
-            UPDATE PROJECT
+            BE AN ADVOCAT
           </Link>
         </div>
-        <h2>{project.title} </h2>
-        <small>{project.owner} </small>
-        <p>{project.description}</p>
-        <small className="small">
-          Status: {`${project.is_open ? "Open" : "Closed"}`}
-        </small>
-        <small className="small">Created at: {dateCreated}</small>
-      </article>
-      <article className="recent-pledges">
-        <h3 className={project.pledges.length !== 0 ? "" : "hidden"}>
-          Advocats
-        </h3>
-        {project.pledges.map((pledgeData, key) => {
-          return (
-            <ul key={key}>
-              <li>
-                ${pledgeData.amount.toFixed(2)} from{" "}
-                {pledgeData.anonymous ? "Anonymous" : pledgeData.supporter}&emsp;
-                <Link to={`/update/pledge/${pledgeData.id}/`} className={
-                  isMyPledge(myPledges, pledgeData.id) ? "edit-pledge" : "hidden"
-                }>edit</Link>
-              </li>
-              <li className={pledgeData.comment || isMyPledge(myPledges,pledgeData.id)? "" : "hidden"}>
-                <q className={pledgeData.comment ? "" : "hidden"}>{pledgeData.comment} </q>
-                
-              </li>
-              <li
-                >
-                
-              </li>
-            </ul>
-          );
-        })}
-      </article>
+      </section>
+      <div className="update-link">
+        <Link
+          to={updateLink}
+          className={
+            isMyProject(myProjects, project.id)
+              ? "float-right button"
+              : "hidden"
+          }>
+          UPDATE PROJECT
+        </Link>
+      </div>
+        <article className="project-blurb">
+          <small className="project-owner">by {project.owner}</small>
+          <p>{project.description}</p>
+          <small className="small status">
+            Status: {`${project.is_open ? "Open" : "Closed"}`}
+          </small>
+          <small className="small created">Created at: {dateCreated}</small>
+        </article>
+        <article className="recent-pledges">
+          <h3 className={project.pledges.length !== 0 ? "" : "hidden"}>
+            Advocats
+          </h3>
+          {project.pledges.map((pledgeData, key) => {
+            return (
+              <ul key={key}>
+                <li>
+                  ${pledgeData.amount.toFixed(2)} from{" "}
+                  {pledgeData.anonymous ? "Anonymous" : pledgeData.supporter}
+                  &emsp;
+                  <Link
+                    to={`/update/pledge/${pledgeData.id}/`}
+                    className={
+                      isMyPledge(myPledges, pledgeData.id)
+                        ? "edit-pledge"
+                        : "hidden"
+                    }>
+                    edit
+                  </Link>
+                </li>
+                <li className={pledgeData.comment ? "" : "hidden"}>
+                  <q>{pledgeData.comment} </q>
+                </li>
+              </ul>
+            );
+          })}
+        </article>
     </div>
   );
 }
