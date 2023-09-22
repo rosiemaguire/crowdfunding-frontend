@@ -1,0 +1,19 @@
+#not-found {
+  margin: 16px;
+  text-align: center;
+}
+
+#not-found h2 {
+  margin-bottom: 24px;
+}
+@media (min-width: 768px) {
+  #not-found img {
+    max-width: 35%;
+  }
+}
+
+#home {
+  color: var(--pink);
+  font-weight: bold;
+  text-decoration: underline;
+}

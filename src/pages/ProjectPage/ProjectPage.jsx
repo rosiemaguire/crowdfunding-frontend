@@ -19,10 +19,14 @@ function ProjectPage() {
     return <p>Loading...</p>;
   }
 
-  if (error || myProjectsError) {
+  if (error) {
     return <p>{error.message}</p>;
   }
-
+  
+  if (myProjectsError) {
+    return <p>{myProjectsError.message}</p>
+  }
+  
   const dateCreated = new Date(project.date_created).toLocaleDateString();
   const updateLink = `/update/project/${project.id}`;
 
