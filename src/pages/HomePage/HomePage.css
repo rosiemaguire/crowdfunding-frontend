@@ -2,31 +2,33 @@
   margin: 10px;
 }
 
-#slider-project-list {
-  display:none;
-}
-
 @media (min-width: 768px) {
-  #slider-project-list {
-    display:unset;
+  #project-list {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    column-gap: 10px;
+    row-gap: 10px;
+    padding: 16px;
+    margin: 0;
   }
-  #slider-project-list h3 {
-    font-size: 4rem;
-  }
+
   .desktop-single-button {
     max-width: 50%;
     margin-left: auto;
     margin-right: auto;
   }
-  #project-list {
-    display:none;
+}
+
+@media (min-width: 768px) {
+  #project-list h3 {
+    font-size: 4rem;
   }
   #home-page .desktop-inline-buttons a{
     display: flex;
     justify-content: center;
     align-items: center;
   }
-}
+} 
 
 #home-page h1 {
   text-align: center;

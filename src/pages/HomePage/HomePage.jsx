@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import useProjects from "../../hooks/use-projects";
 import useAuth from "../../hooks/use-auth";
 import ProjectCard from "../../components/ProjectCard/ProjectCard";
-import Slider from "../../components/Slider/Slider";
 import "./HomePage.css";
 import "../../main.css";
 
@@ -21,12 +20,6 @@ function HomePage() {
   return (
     <article id="home-page">
       <h1>Advocat</h1>
-
-      <section id="slider-project-list">
-      <Slider slides={projects.filter((project) => project["is_open"] == true)
-          .sort((a, b) => (b.id > a.id ? 1 : -1))
-          .slice(0, 10)} />
-          </section>
       <section id="project-list">
         {projects
           .filter((project) => project["is_open"] == true)
