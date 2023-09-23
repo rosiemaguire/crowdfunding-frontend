@@ -77,6 +77,10 @@
   }
 }
 
+#project-description {
+  min-height: 200px;
+}
+
 .update-link {
   display: block;
   margin-left: auto;
@@ -130,4 +134,11 @@ progress[value]::-webkit-progress-value {
 	                           rgba(0, 0, 0, .25)),
 	   -webkit-linear-gradient(left, var(--pink),var(--pale-green), var(--lime-green), var(--pastel-moss));
     border-radius: 4px; 
+}
+.small-button {
+  background-color: var(--pale-green);
+  border: var(--pink) 4px solid;
+  border-radius: 10px;
+  color: var(--pink);
+  font-weight: bold;
 }

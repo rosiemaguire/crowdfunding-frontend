@@ -7,6 +7,7 @@ import isMyProject from "../../components/functions/isMyProject";
 import isMyPledge from "../../components/functions/isMyPledge";
 import "./ProjectPage.css";
 import "../../main.css";
+import { useState } from "react";
 
 function ProjectPage() {
   const { auth } = useAuth();
@@ -14,6 +15,7 @@ function ProjectPage() {
   const [project, isLoading, error] = useProject(id);
   const [myProjects, myProjectsAreLoading, myProjectsError] = useMyProjects();
   const [myPledges] = useMyPledges();
+  const [viewAll, setViewAll] = useState(false);
 
   if (isLoading || myProjectsAreLoading) {
     return <p>Loading...</p>;
@@ -63,11 +65,6 @@ function ProjectPage() {
           </Link>
         </div>
       </section>
-      {/* <div className={
-            auth.token && isMyProject(myProjects, project.id)
-              ? ""
-              : "hidden"
-          }> */}
         <Link
           to={updateLink}
           id="update-link"
@@ -78,7 +75,6 @@ function ProjectPage() {
           }>
           UPDATE PROJECT
         </Link>
-      {/* </div> */}
       <article className="project-blurb">
         <small className="project-owner">by {project.owner}</small>
         <main id="project-description">
@@ -93,6 +89,33 @@ function ProjectPage() {
         <h3 className={project.pledges.length !== 0 ? "" : "hidden"}>
           Advocats
         </h3>
+        <section className={viewAll ? "hidden":""}>
+        {project.pledges.sort((a, b) => (b.id > a.id ? 1 : -1)).slice(0, 3).map((pledgeData, key) => {
+          return (
+            <ul key={key}>
+              <li>
+                ${pledgeData.amount.toFixed(2)} from{" "}
+                {pledgeData.anonymous ? "Anonymous" : pledgeData.supporter}
+                &emsp;
+                <Link
+                  to={`/update/pledge/${pledgeData.id}/`}
+                  className={
+                    isMyPledge(myPledges, pledgeData.id)
+                      ? "edit-pledge"
+                      : "hidden"
+                  }>
+                  edit
+                </Link>
+              </li>
+              <li className={pledgeData.comment ? "" : "hidden"}>
+                <q>{pledgeData.comment} </q>
+              </li>
+            </ul>
+          );
+        })}
+        <button className={project.pledges.length > 3  ? "small-button" : "hidden"}onClick={() => setViewAll(true)}>View more</button>
+        </section>
+        <section className={viewAll ? "":"hidden"}>
         {project.pledges.map((pledgeData, key) => {
           return (
             <ul key={key}>
@@ -116,6 +139,8 @@ function ProjectPage() {
             </ul>
           );
         })}
+        <button className="small-button" onClick={() => setViewAll(false)}>View less</button>
+        </section>
       </article>
     </div>
   );

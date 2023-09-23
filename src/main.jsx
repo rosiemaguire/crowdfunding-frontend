@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 // Import Components
 import NavBar from "./components/NavBar/NavBar.jsx";
 import { AuthProvider } from "./components/AuthProvider/AuthProvider.jsx";
+import NotFound404Page from "./components/NotFound404Page/NotFound404Page.jsx";
 
 // Import Pages
 import HomePage from "./pages/HomePage/HomePage.jsx";
@@ -40,6 +41,7 @@ const router = createBrowserRouter([
       { path: "/update/pledge/:id", element: <PledgeUpdatePage />},
       { path: "/profile", element: <UserPage />},
       { path: "/profile/update", element: <UserUpdatePage />},
+      { path: "*", element: <NotFound404Page />},
     ],
   },
 ]);
