@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import ProjectUpdateForm from "../../components/ProjectUpdateForm/ProjectUpdateForm";
 import useMyProjects from "../../hooks/use-myprojects";
 import isMyProject from "../../components/functions/isMyProject";
-import NotFound404Page from "../NotFound404Page/NotFound404Page";
+import NotFound404Page from "../../components/NotFound404Page/NotFound404Page";
 
 function ProjectUpdatePage() {
   const { id } = useParams();
