@@ -144,7 +144,8 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 ## Project Submission
 - [X] A link to the deployed project
   - [Deployed site][deployed-site]
-- [ ] A screenshot of the homepage
+- [X] A screenshot of the homepage
+  - ![Home page](README_images/homePage.png)
 - [X] A screenshot of the project creation page
   - ![Project creation page](README_images/projectCreationPage.png)
 - [X] A screenshot of the pledge creation form
@@ -165,7 +166,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 - [X] Have function that calculates total donations
 - [X] Have function that grabs most recent three pledges to display on Project Page
     - [X] Button to toggle view to see all pledges under3 recent pledges (similar to what has been done with projects on home page)
-- [ ] Implement carousel for recent projects on home page
+- [X] Implement carousel for recent projects on home page
 - [ ] Check if username is already in use on the handle change, prior to post request being made for new user creation
 
 
