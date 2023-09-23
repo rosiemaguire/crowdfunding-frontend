@@ -6,3 +6,7 @@
     grid-column: 1/3;
   }
 }
+#no-projects {
+  margin: 16px;
+  text-align: center;
+}

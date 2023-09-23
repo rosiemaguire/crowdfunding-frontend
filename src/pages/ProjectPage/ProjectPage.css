@@ -9,22 +9,20 @@
 .project-page .button {
   max-width: 240px;
   margin: 30px auto;
-  line-height: 1;
 }
 
 @media (min-width: 768px) {
-  .project-image {
-    max-width: 400px;
-  }
   .project-page .button {
     margin: 20px auto;
     justify-content: center;
     width: 100%;
   }
 }
+
 .project-page {
   text-align: center;
 }
+
 @media (min-width: 768px) {
   .project-page {
     text-align: left;
@@ -45,7 +43,8 @@
 @media (min-width: 768px) {
   .project-page {
     display: grid;
-    grid-template-columns: 40% 60%;
+    grid-template-columns: 40% 58%;
+    column-gap: 30px;
     align-items:start;
   }
   .first-colummn {
@@ -67,13 +66,18 @@
     margin-left: auto;
     margin-right: auto;
   }
-  .update-link {
+  #update-link {
     grid-row: 1;
     grid-column: 2;
+    margin-right: 8px;
+    max-width: 200px;
+  }
+  .update-link {
+    font-size: 1.3rem;
   }
 }
 
-.float-right {
+.update-link {
   display: block;
   margin-left: auto;
   margin-right: auto;

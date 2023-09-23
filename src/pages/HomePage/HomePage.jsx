@@ -18,7 +18,8 @@ function HomePage() {
   }
 
   return (
-    <article>
+    <article id="home-page">
+      <h1>Advocat</h1>
       <section id="project-list">
         {projects
           .filter((project) => project["is_open"] == true)
@@ -30,16 +31,17 @@ function HomePage() {
       </section>
       <div className={auth.token  ? "desktop-inline-buttons" : "desktop-single-button"}>
         {auth.token ? (
-          <Link to="/new-project" className="button centre-block-object">
-            START FUNDRAISING
+          <Link id="start-fundraising" to="/new-project" className="button centre-block-object">
+            Start Fundraising
           </Link>
         ) : (
           ""
         )}
-        <Link to="/projects" className="button centre-block-object">
-          MORE PROJECTS TO ADVOCAT
+        <Link id="more-projects" to="/projects" className="button centre-block-object">
+          More Causes to Advocat
         </Link>
       </div>
+      <Link id="my-causes" to={{ pathname: "/projects/", search: `projects=my-projects` }} className={auth.token  ? "desktop-single-button button centre-block-object" : "hidden"}>My Causes</Link>
     </article>
   );
 }
