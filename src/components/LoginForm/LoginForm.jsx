@@ -71,6 +71,7 @@ function LoginForm() {
       </button>
       <p className="error-message">{errorMessage}</p>
       <sub className={errorMessage ? "" : "hidden"}>Please check your username and password.</sub>
+      <sub className={errorMessage ? "" : "hidden"}>* Username and password are case sensitive.</sub>
       <p>{formIsInvalid}</p>
     </form>
   );
