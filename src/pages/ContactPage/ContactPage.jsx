@@ -1,9 +1,7 @@
+import NotFound404Page from "../NotFound404Page/NotFound404Page";
+
 function ContactPage() {
-  return (
-    <article id="contact">
-      <h1>This is the contact page</h1>
-    </article>
-  )
+  return <NotFound404Page/>
 }
 
 export default ContactPage;
