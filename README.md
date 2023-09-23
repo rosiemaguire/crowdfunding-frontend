@@ -144,8 +144,8 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 ## Project Submission
 - [X] A link to the deployed project
   - [Deployed site][deployed-site]
-- [X] A screenshot of the homepage
-  - ![Home page](README_images/homePage.png)
+- [] A screenshot of the homepage
+  - ![Home page]()
 - [X] A screenshot of the project creation page
   - ![Project creation page](README_images/projectCreationPage.png)
 - [X] A screenshot of the pledge creation form
