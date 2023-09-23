@@ -13,3 +13,8 @@
   font-weight: bold;
   text-decoration:underline;
 }
+
+#about h3 {
+  /* color: var(--lime-green); */
+  margin-top: 70px;
+}
