@@ -26,7 +26,7 @@ function AboutPage() {
       </ul>
       <br></br>
       <p>
-        This website is still under construction, so be sure to check in as more
+        This website is newly developed, so be sure to check in as more
         functionality becomes available.
       </p>
       <p>
