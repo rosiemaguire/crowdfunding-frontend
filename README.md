@@ -241,4 +241,4 @@ Project Link: [https://github.com/rosiemaguire/crowdfunding-frontend](https://gi
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
 [back-end-repo]:https://github.com/rosiemaguire/Django-crowd-funding-project
-[deployed-site]: https://main--exquisite-semifreddo-0e0f78.netlify.app/
+[deployed-site]: https://advocat-crowdfunding.netlify.app/
